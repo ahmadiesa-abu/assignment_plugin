@@ -11,11 +11,6 @@ imports:
     # relative import of plugin.yaml that resides in the blueprint directory
     - plugin/test_plugin.yaml
 
-inputs:
-    # example input that could be injected by test
-    test_input:
-        description: an input for the test
-        default: default_test_input
 
 node_templates:
     # defining a single node template that will serve as our test node
@@ -27,16 +22,12 @@ node_templates:
                 start:
                     # here we map the single plugin task to the start operation
                     # of the cloudify.interfaces.lifecycle interface
-                    implementation: plugin_name.plugin.tasks.my_task
-                    inputs:
-                        # my_task accepts a single property named
-                        # some property. Here we inject this property
-                        # from the input provided by the test
-                        # (or 'default_test_input' if no input was provided)
-                        some_property: { get_input: test_input }
+                    implementation: assignment.plugin.tasks.allocate_ip
+                uninstall:
+                    implementation: assignment.plugin.tasks.unallocate_ip
 
 outputs:
     # example output the could be used to simplify assertions by test
     test_output:
         description: an output for the test
-        value: { get_attribute: [test_node_template, some_property] }
+        value: { get_attribute: [test_node_template, fixed_ip] }

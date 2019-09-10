@@ -1,13 +1,33 @@
 plugins:
-  # Name could be anything, this name is what appears on the beginning of operation
-  # mappings.
-  plugin_name:
-    # Could be 'central_deployment_agent' or 'host_agent'.
-    # If 'central_deployment_agent', this plugin will be executed on the
-    # deployment dedicated agent, other wise it will be executed on the host agent.
-    executor: host_agent
+  assignment:
+    executor: central_deployment_agent
+    source: /home/centos/assignment-plugin
+    package_name: assignment-plugin
+    package_version: '0.1'
 
-    # URL to archive containing the plugin or name of directory containing
-    # the plugin if it is included in the the blueprint directory under the
-    # "plugins" directory.
-    source: https://github.com/cloudify-cosmo/cloudify-plugin-template/archive/master.zip
+data_types:
+  cloudify.types.assignment.IPAddress:
+    properties:
+      ip:
+        type: string
+        description: IP address returned from rest call
+        required: true
+
+
+relationships:
+  cloudify.relationships.assignment.get_ip:
+    derived_from: cloudify.relationships.connected_to
+    source_interfaces:
+      cloudify.interfaces.relationship_lifecycle:
+        install:
+          implementation: assignment.plugin.tasks.allocate_ip
+          inputs:
+            pool_id:
+              default: ip_addresses
+        uninstall:
+          implementation: assignment.plugin.tasks.unallocate_ip
+          inputs:
+            pool_id:
+              default: ip_addresses
+            resource_id:
+              default: ''
