@@ -1,25 +1,6 @@
 plugins:
   assignment:
     executor: central_deployment_agent
-    source: /home/centos/assignment-plugin
+    source: 
     package_name: assignment-plugin
     package_version: '0.1'
-
-
-relationships:
-  cloudify.relationships.assignment.get_ip:
-    derived_from: cloudify.relationships.connected_to
-    source_interfaces:
-      cloudify.interfaces.relationship_lifecycle:
-        install:
-          implementation: assignment.plugin.tasks.allocate_ip
-          inputs:
-            pool_id:
-              default: ip_addresses
-        uninstall:
-          implementation: assignment.plugin.tasks.unallocate_ip
-          inputs:
-            pool_id:
-              default: ip_addresses
-            resource_id:
-              default: ''
