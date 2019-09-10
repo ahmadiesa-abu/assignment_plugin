@@ -4,29 +4,3 @@ plugins:
     source: https://github.com/ahmadiesa-abu/assignment_plugin/archive/e9e5f18.zip
     package_name: assignment-plugin
     package_version: '0.1'
-
-
-node_types:
-  cloudify.nodes.assignment.Server:
-    derived_from: cloudify.nodes.Compute
-    properties:
-      install_agent:
-        default: true
-      cloudify_agent:
-        default: {}
-      ip:
-        default: ''
-    interfaces:
-      cloudify.interfaces.lifecycle:
-        create:
-          implementation: assignment.plugin.tasks.allocate_ip
-          inputs:
-            pool_id:
-              default: ip_addresses
-        delete:
-          implementation: assignment.plugin.tasks.unallocate_ip
-          inputs:
-            pool_id:
-              default: ip_addresses
-            resource_id:
-              default: ''
