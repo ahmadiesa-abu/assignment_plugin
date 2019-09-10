@@ -1,6 +1,6 @@
 plugins:
   assignment:
     executor: central_deployment_agent
-    source: 
+    source: https://github.com/ahmadiesa-abu/assignment_plugin/archive/e9e5f18.zip
     package_name: assignment-plugin
     package_version: '0.1'
