@@ -30,4 +30,4 @@ outputs:
     # example output the could be used to simplify assertions by test
     test_output:
         description: an output for the test
-        value: { get_attribute: [test_node_template, fixed_ip] }
+        value: { get_attribute: [test_node_template, ip] }
