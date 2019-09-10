@@ -37,13 +37,17 @@ service postgresql start
 ------ if the above is done ( the host will be ready to service requests on port 5000
 
 
+
+
+Creating wagon file :
+-----------------------------
+
+first we have to install requirments
 ```
 pip install -r dev-requirements.txt
 ```
 
-Creating wagon file :
------------------------------
-first we have to install wagon
+then install wagon
 
 ```
 pip install wagon
