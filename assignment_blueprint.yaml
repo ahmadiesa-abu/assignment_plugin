@@ -3,6 +3,12 @@ tosca_definitions_version: cloudify_dsl_1_3
 imports:
   - http://www.getcloudify.org/spec/cloudify/4.6/types.yaml
   - plugin:assignment-plugin
+  
+inputs:
+  python_host_ip:
+    description: python host ip that hosts the app for ip pool
+    type: string
+
 
 node_types:
   cloudify.nodes.assignment.Server:
@@ -15,11 +21,15 @@ node_types:
         create:
           implementation: assignment.plugin.tasks.allocate_ip
           inputs:
+            python_host:
+              default: { get_input: python_host_ip }
             pool_id:
               default: ip_addresses
         delete:
           implementation: assignment.plugin.tasks.unallocate_ip
           inputs:
+            python_host:
+              default: { get_input: python_host_ip }
             pool_id:
               default: ip_addresses
             resource_id:
