@@ -17,7 +17,7 @@ sudo yum groupinstall -y "Development Tools"```
 sudo postgresql-setup initdb
 sudo vi /var/lib/pgsql/data/pg_hba.conf (change ident to trust -to make the python connect to db-)
 sudo systemctl start postgresql
-sudo passwd postgres (provide it with password in order to login to it to use psql)
+sudo passwd postgres (provide it with password to login and use psql)
 ```
 after login we create a user using (```createuser --interactive --pwprompt```)
 and then connecting to db (```create database pools```)
