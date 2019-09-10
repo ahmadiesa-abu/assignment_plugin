@@ -9,7 +9,7 @@ plugins:
 node_types:
   cloudify.nodes.assignment.Server:
     derived_from: cloudify.nodes.Compute
-  interfaces:
+    interfaces:
       cloudify.interfaces.lifecycle:
         create:
           implementation: assignment.plugin.tasks.allocate_ip
