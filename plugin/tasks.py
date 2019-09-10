@@ -33,7 +33,7 @@ def allocate_ip(pool_id,**kwargs):
                 except Exception as e:
                     raise NonRecoverableError('Exception happned {}'.format(getattr(e, 'message', repr(e)))
         if ip_to_allocate == '':
-           raise NonRecoverableError('no ips found to allocate')
+            raise NonRecoverableError('no ips found to allocate')
     except Exception as e:
         raise NonRecoverableError('Exception happned {}'.format(getattr(e, 'message', repr(e)))
 
