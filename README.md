@@ -12,7 +12,8 @@ https://github.com/ahmadiesa-abu/pool_and_resources
 
 some steps needed to be done on the environment
 [linux : Centos ]
-```sudo yum install -y postgresql-server postgresql-contrib python-psycopg2 python-devel postgresql-devel python-pip
+```
+sudo yum install -y postgresql-server postgresql-contrib python-psycopg2 python-devel postgresql-devel python-pip
 sudo yum groupinstall -y "Development Tools"
 sudo postgresql-setup initdb
 sudo vi /var/lib/pgsql/data/pg_hba.conf (change ident to trust -to make the python connect to db-)
@@ -24,7 +25,8 @@ and then connecting to db (```create database pools```)
 modify user and pass in the app/main/config.py
 
 [linux : Ubuntu ]
-```sudo apt-get install -y postgresql postgresql-contrib python-pip python-psycopg2 libpq-dev python-dev libxml2-dev libxslt-dev libffi-dev
+```
+sudo apt-get install -y postgresql postgresql-contrib python-pip python-psycopg2 libpq-dev python-dev libxml2-dev libxslt-dev libffi-dev
 update-rc.d postgresql enable
 service postgresql start
 ```
