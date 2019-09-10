@@ -9,6 +9,13 @@ plugins:
 node_types:
   cloudify.nodes.assignment.Server:
     derived_from: cloudify.nodes.Compute
+    properties:
+      install_agent:
+        default: true
+      cloudify_agent:
+        default: {}
+      ip:
+        default: ''
     interfaces:
       cloudify.interfaces.lifecycle:
         create:
