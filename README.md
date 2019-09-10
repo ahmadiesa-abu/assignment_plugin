@@ -21,8 +21,11 @@ sudo systemctl start postgresql
 sudo passwd postgres (provide it with password to login and use psql)
 ```
 after login we create a user using (```createuser --interactive --pwprompt```)
+
 and then connecting to db (```create database pools```)
+
 modify user and pass in the app/main/config.py
+
 
 [linux : Ubuntu ]
 ```
