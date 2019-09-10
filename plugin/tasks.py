@@ -28,12 +28,12 @@ def allocate_ip(pool_id,**kwargs):
     if pool_id == '':
         ctx.logger.error('pool_id was not provided')
         return;
-    resp = requests.get('http://127.0.0.1:5000/api/pools/'+pool_id)
+    resp = requests.get('http://172.15.21.158:5000/api/pools/'+pool_id)
     ips = json.loads(resp.content)['resources']
     ip_to_allocate=''
     for ip in ips:
         if ip['status']=='RELEASED':
-            aresp = requests.put('http://127.0.0.1:5000/api/pools/'+pool_id+'/allocate',
+            aresp = requests.put('http://172.15.21.158:5000/api/pools/'+pool_id+'/allocate',
                         json.dumps(dict(
                         id=ip['id']
         		)),headers={'content-type':'application/json'})
@@ -55,7 +55,7 @@ def unallocate_ip(pool_id,resource_id,**kwargs):
     if resource_id == '':
         ctx.logger.error('resource_id was not provided')
         return;
-    aresp = requests.put('http://127.0.0.1:5000/api/pools/'+pool_id+'/unallocate',
+    aresp = requests.put('http://172.15.21.158:5000/api/pools/'+pool_id+'/unallocate',
                         json.dumps(dict(
                         id=resource_id
                         )),headers={'content-type':'application/json'})
