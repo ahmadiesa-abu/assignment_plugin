@@ -37,7 +37,7 @@ pip install -r dev-requirements.txt
 ```
 
 Creating wagon file :
-
+-----------------------------
 first we have to install wagon
 
 ```
@@ -58,7 +58,7 @@ cfy plugins upload -y plugin.yaml [wagon_file_name]
 ```
 
 Testing the plugin :
-
+-----------------------------
 we execute this command that will install the blueprint 
 ```
 cfy install ~/assignment_plugin/blueprint.yaml -d testDepLocal -b testBlueLocal -i python_host_ip=[ip_address_of python server]
