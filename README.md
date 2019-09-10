@@ -31,7 +31,7 @@ update-rc.d postgresql enable
 service postgresql start
 ```
 
------- if the above is done ( the host will be ready to service request on port 5000
+------ if the above is done ( the host will be ready to service requests on port 5000
 
 
 ```
