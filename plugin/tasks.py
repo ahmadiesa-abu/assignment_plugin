@@ -55,7 +55,7 @@ def unallocate_ip(pool_id,resource_id,**kwargs):
     if resource_id == '':
         ctx.logger.error('resource_id was not provided')
         return;
-    aresp = requests.put('http://172.15.21.158:5000/api/pools/'+pool_id+'/unallocate',
+    aresp = requests.put('http://172.15.21.158:5000/api/pools/'+pool_id+'/release',
                         json.dumps(dict(
                         id=resource_id
                         )),headers={'content-type':'application/json'})
