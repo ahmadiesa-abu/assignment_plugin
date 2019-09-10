@@ -1,17 +1,8 @@
-cloudify-plugin-template
+Assignment Plugin
 ========================
 
-[![Build Status](https://travis-ci.org/cloudify-cosmo/cloudify-plugin-template.svg?branch=master)](https://travis-ci.org/cloudify-cosmo/cloudify-plugin-template)
+Cloudify plugin project that invokes an api to get ip and assign it to IP of a compute Node.
 
-Cloudify plugin project template.
-
-## Usage
-
-See [writing your own plugin](https://docs.cloudify.co/4.4.0/developer/writing_plugins/)
-
-## Tests
-
-To run the example plugin tests, the included `dev-requirements.txt` should be installed.
 
 ```
 pip install -r dev-requirements.txt
