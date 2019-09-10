@@ -20,19 +20,20 @@ sudo vi /var/lib/pgsql/data/pg_hba.conf (change ident to trust -to make the pyth
 sudo systemctl start postgresql
 sudo passwd postgres (provide it with password to login and use psql)
 ```
-after login we create a user using (```createuser --interactive --pwprompt```)
-
-and then connecting to db (```create database pools```)
-
-modify user and pass in the app/main/config.py
-
 
 [linux : Ubuntu ]
 ```
 sudo apt-get install -y postgresql postgresql-contrib python-pip python-psycopg2 libpq-dev python-dev libxml2-dev libxslt-dev libffi-dev
 update-rc.d postgresql enable
 service postgresql start
+sudo passwd postgres (provide it with password to login and use psql)
 ```
+
+after login we create a user using (```createuser --interactive --pwprompt```)
+
+and then connecting to db (```create database pools```)
+
+modify user and pass in the app/main/config.py
 
 ------ if the above is done ( the host will be ready to service requests on port 5000 )
 
