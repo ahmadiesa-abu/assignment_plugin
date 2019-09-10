@@ -1,0 +1,35 @@
+tosca_definitions_version: cloudify_dsl_1_3
+
+imports:
+  - http://www.getcloudify.org/spec/cloudify/4.6/types.yaml
+  - plugin:assignment-plugin
+
+node_types:
+  cloudify.nodes.assignment.Server:
+    derived_from: cloudify.nodes.Compute
+    properties:
+      ip:
+        default: ''
+    interfaces:
+      cloudify.interfaces.lifecycle:
+        create:
+          implementation: assignment.plugin.tasks.allocate_ip
+          inputs:
+            pool_id:
+              default: ip_addresses
+        delete:
+          implementation: assignment.plugin.tasks.unallocate_ip
+          inputs:
+            pool_id:
+              default: ip_addresses
+            resource_id:
+              default:  { get_attribute : [SELF, ip_id] }
+
+node_templates:
+
+  test_host:
+    type: cloudify.nodes.assignment.Server
+    properties:
+      agent_config:
+        user: ubuntu
+        key: { get_secret: agent_key_private}
