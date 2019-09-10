@@ -34,7 +34,7 @@ update-rc.d postgresql enable
 service postgresql start
 ```
 
------- if the above is done ( the host will be ready to service requests on port 5000
+------ if the above is done ( the host will be ready to service requests on port 5000 )
 
 
 
@@ -68,7 +68,36 @@ cfy plugins upload -y plugin.yaml [wagon_file_name]
 
 Testing the plugin :
 -----------------------------
-we execute this command that will install the blueprint 
+we execute this command that will install the blueprint (assignment_blueprint.yaml)
 ```
-cfy install ~/assignment_plugin/blueprint.yaml -d testDepLocal -b testBlueLocal -i python_host_ip=[ip_address_of python server]
+cfy install assignment_blueprint.yaml -d [Deployment Name] -b [Blueprint Name] -i python_host_ip=[ip_address_of python server]
 ```
+
+
+Creating blueprint file :
+-----------------------------
+we write the blueprint by modifying import to include :
+
+```
+imports :
+  ....
+  - plugin: [local plugin name]
+```
+
+then we write the node types that we want to implement from the plugin 
+
+```
+node_types:
+  ...
+  derived_from: ...
+  properties: ...
+  interfaces:
+    cloudify.interfaces.lifecycle:
+      create:
+        implementation: [plugin mapping name].plugin.tasks.[function name]
+        inputs:
+          ... [inputs for the function]
+          
+```
+
+and we use the node type inside the node_templates
