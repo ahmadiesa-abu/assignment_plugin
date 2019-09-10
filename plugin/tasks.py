@@ -9,12 +9,12 @@ from cloudify.decorators import operation
 from cloudify.exceptions import NonRecoverableError
 
 @operation
-def allocate_ip(pool_id,**kwargs):
+def allocate_ip(python_host,pool_id,**kwargs):
     if pool_id == '':
         ctx.logger.error('pool_id was not provided')
         return;
     try:
-        resp = requests.get('http://172.15.21.158:5000/api/pools/'+pool_id)
+        resp = requests.get('http://'+python_host+':5000/api/pools/'+pool_id)
         ips = json.loads(resp.content)['resources']
         ip_to_allocate=''
         for ip in ips:
@@ -39,7 +39,7 @@ def allocate_ip(pool_id,**kwargs):
 
 
 @operation
-def unallocate_ip(pool_id,resource_id,**kwargs):
+def unallocate_ip(python_host,pool_id,resource_id,**kwargs):
     if pool_id == '':
         ctx.logger.error('pool_id was not provided')
         return;
@@ -47,7 +47,7 @@ def unallocate_ip(pool_id,resource_id,**kwargs):
         ctx.logger.error('resource_id was not provided')
         return;
     try:
-        aresp = requests.put('http://172.15.21.158:5000/api/pools/'+pool_id+'/release',
+        aresp = requests.put('http://'+python_host+':5000/api/pools/'+pool_id+'/release',
                             json.dumps(dict(
                             id=resource_id
                             )),headers={'content-type':'application/json'})
