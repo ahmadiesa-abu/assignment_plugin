@@ -39,7 +39,7 @@ def allocate_ip(pool_id,**kwargs):
         		)),headers={'content-type':'application/json'})
             if aresp.status_code==200:
                ip_to_allocate=ip['ip_address']   
-               ctx.instance.runtime_properties['fixed_ip'] = ip_to_allocate   
+               ctx.instance.runtime_properties['ip'] = ip_to_allocate   
                ctx.instance.runtime_properties['ip_id'] = ip['id']
                ctx.logger.info('ip {} is allocated'.format(ip_to_allocate))
                break;
