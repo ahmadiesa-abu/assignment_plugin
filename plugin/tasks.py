@@ -31,11 +31,11 @@ def allocate_ip(pool_id,**kwargs):
                         ctx.logger.info('ip {} is allocated'.format(ip_to_allocate))
                         break;
                 except Exception as e:
-                    raise NonRecoverableError('Exception happned {}'.format(getattr(e, 'message', repr(e)))
+                    raise NonRecoverableError('Exception happned {}'.format(getattr(e, 'message', repr(e))))
         if ip_to_allocate == '':
             raise NonRecoverableError('no ips found to allocate')
     except Exception as e:
-        raise NonRecoverableError('Exception happned {}'.format(getattr(e, 'message', repr(e)))
+        raise NonRecoverableError('Exception happned {}'.format(getattr(e, 'message', repr(e))))
 
 
 @operation
@@ -56,4 +56,4 @@ def unallocate_ip(pool_id,resource_id,**kwargs):
         else:
             ctx.logger.error('ip with id {} was not unallocated'.format(resource_id))
     except Exception as e:
-        raise NonRecoverableError('Exception happned {}'.format(getattr(e, 'message', repr(e)))
+        raise NonRecoverableError('Exception happned {}'.format(getattr(e, 'message', repr(e))))
