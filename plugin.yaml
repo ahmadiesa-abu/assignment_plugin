@@ -29,4 +29,4 @@ node_types:
             pool_id:
               default: ip_addresses
             resource_id:
-              default: {get_attribute : [self,fixed_ip]}
+              default: ''
